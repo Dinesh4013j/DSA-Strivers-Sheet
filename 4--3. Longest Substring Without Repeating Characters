@@ -1,0 +1,36 @@
+Given a string s, find the length of the longest 
+substring
+ without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        d={}
+        nums=s
+        n=len(nums)
+        for num in nums:
+            if num not in d:
+                d[num]=0
+        j=0
+        maxi=0
+        for i in range(n):
+            d[nums[i]]+=1
+            if d[nums[i]]>1:
+                while d[nums[i]]!=1:
+                    d[nums[j]]-=1
+                    j+=1
+            print(i,j)
+            maxi=max(i-j+1,maxi)
+        return maxi
